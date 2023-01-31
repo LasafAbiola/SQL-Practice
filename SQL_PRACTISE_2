@@ -1,0 +1,124 @@
+-- Topic 2: WHERE Statement
+
+-- Query Example 1
+SELECT * 
+FROM STATION_DATA;
+
+-- Query Example 2
+SELECT * 
+FROM STATION_DATA
+WHERE year = 2010;
+
+-- Query Example 3a
+SELECT * 
+FROM station_data
+WHERE year != 2010;
+
+-- Query Example 3b
+SELECT * 
+FROM station_data
+WHERE year <> 2010;
+
+-- Query Example 4a
+SELECT * 
+FROM station_data
+WHERE year Between 2005 and 2010;
+
+-- Query Example 4b
+SELECT * 
+FROM station_data
+WHERE year >= 2005 AND year <= 2010;
+
+-- Query Example 4c
+SELECT * 
+FROM station_data
+WHERE year > 2005 AND year < 2010;
+
+-- Query Example 5a
+SELECT * 
+FROM station_data
+WHERE month = 2005 OR month = 6 OR month = 9 OR month = 12;
+
+-- Query Example 5b
+SELECT * 
+FROM station_data
+WHERE month IN (3, 6, 9, 12);
+
+-- Query Example 5c
+SELECT * 
+FROM station_data
+WHERE month NOT IN (3, 6, 9, 12);
+
+-- Query Example 5b
+SELECT * 
+FROM station_data
+WHERE month % 3 = 0;
+
+-- Query Example 5b
+SELECT * 
+FROM station_data
+WHERE month IN (3, 6, 9, 12);
+
+-- Query Example 6a
+SELECT * 
+FROM station_data
+WHERE report_code = '513A63';
+
+-- Query Example 6b
+SELECT * 
+FROM station_data
+WHERE report_code IN ('513A63','1F8A7B','EF616A');
+
+-- Query Example 7
+SELECT * 
+FROM station_data
+WHERE length(report_code) != 6;
+
+-- Query Example 8a
+SELECT * 
+FROM station_data
+WHERE report_code LIKE 'A%';
+
+-- Query Example 8b
+SELECT * 
+FROM station_data
+WHERE report_code LIKE 'B_C%';
+
+-- Query Example 9a
+SELECT * 
+FROM station_data
+WHERE tornado AND hail;
+
+-- Query Example 9b
+SELECT * 
+FROM station_data
+WHERE tornado = 0 AND hail = 1;
+
+-- Query Example 9a
+SELECT * 
+FROM station_data
+WHERE NOT tornado AND hail;
+
+-- Query Example 9a
+SELECT * 
+FROM station_data
+WHERE snow_depth IS NULL;
+
+-- Query Example 10a
+SELECT * 
+FROM station_data
+WHERE coalesce(precipitation, 0) <= 0.5;
+
+-- Query Example 10b
+SELECT * 
+FROM station_data
+WHERE precipitation IS NULL OR precipitation <= 0.5;
+
+-- Query Example 11
+SELECT report_code, coalesce(precipitation, 0) as rainfall
+FROM station_data;
+
+-- Query Example 12
+SELECT * 
+FROM station_data
+WHERE (rain = 1 AND temperature <= 32) OR snow_depth > 0;

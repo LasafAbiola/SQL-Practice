@@ -1,0 +1,86 @@
+--AGGREGATION AND GROUPING
+
+--Query Example 1
+select count(*) as records_count
+from station_data;
+
+--Query Example 2a
+select count(*) as records_count
+from station_data
+where tornado = 1;
+
+--Query Example 2a
+select year, count(*) as records_count
+from station_data
+where tornado = 1
+group by year;
+
+--Query Example 2a
+select year, month, count(*) as records_count
+from station_data
+where tornado = 1
+group by year, month;
+
+--Query Example 2b
+select year, month, count(*) as records_count
+from station_data
+where tornado = 1
+group by 1, 2;
+
+--Query Example 3a
+select year, month, count(*) as records_count
+from station_data
+where tornado = 1
+group by year, month
+order by year, month;
+
+--Query Example 3b
+select year, month, count(*) as records_count
+from station_data
+where tornado = 1
+group by year, month
+order by year desc, month;
+
+--Query Example 4
+select count(snow_depth) as record_snow_depth_count
+from station_data;
+
+--Query Example 5a
+select month, avg(temperature) as avg_temp
+from station_data
+where year >= 2000
+group by month;
+
+--Query Example 5b
+select month, round(avg(temperature),2) as avg_temp
+from station_data
+where year >= 2000
+group by month;
+
+-- Query Example 6
+SELECT year, SUM(snow_depth) as total_snow
+FROM station_data
+WHERE year >= 2000
+GROUP BY year;
+
+-- Query Example 5c
+SELECT year, SUM(snow_depth) as total_snow, SUM(precipitation) as total_precipitation, MAX(precipitation) as max_precipitation
+FROM station_data
+WHERE year >= 2000
+GROUP BY year;
+
+-- Query Example 5d
+SELECT year, round(SUM(snow_depth), 2) as total_snow, round(SUM(precipitation), 2) as total_precipitation, MAX(precipitation) as max_precipitation
+FROM station_data
+WHERE year >= 2000
+GROUP BY year;
+
+-- Query Example 6
+SELECT year, SUM(precipitation) as total_precipitation
+FROM station_data
+GROUP BY year
+HAVING total_precipitation > 30;
+
+-- Query Example 6
+SELECT DISTINCT station_number, year
+from station_data
